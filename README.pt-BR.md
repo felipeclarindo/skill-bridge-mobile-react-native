@@ -2,26 +2,15 @@
 
 # Mottu Mapping App
 
-Aplicativo mobile para gerar relatórios e controlar o estoque usando visão computacional para identificar motos em um pátio.
-
-## Tecnologias Utilizadas
-
-- `React Native` - Framework para desenvolvimento mobile multiplataforma.
-- `Expo` - Ferramenta para facilitar o desenvolvimento e build do app React Native.
-- `TypeScript` - Superset do JavaScript com tipagem estática.
-- `React Navigation` - Navegação entre telas do app.
-- `AsyncStorage` - Armazenamento local para persistência de dados.
-- `react-native-chart-kit` - Biblioteca para gráficos e visualização de dados.
-- `Vision Computacional (backend)` - Processamento para identificar motos no pátio (detalhes da API backend).
+Aplicativo mobile para para o projeto skill-bridge com foco em promover a empregabilidade.
 
 ## Funcionalidades
 
-- Dashboard interativo com gráficos para acompanhamento da quantidade de motos por setores
-- Visualização em tempo real do pátio com imagens capturadas.
-- Geração de relatórios baseados nos dados coletados.
-- Suporte bilingue (Português e Espanhol)
-- Navegação fácil entre telas do app (Home, Pátio, Relatório).
-- Suporte a tema claro e escuro
+- Dashboard interativo com gráficos para acompanhamento de vagas e mais detalhes
+- Visualização em tempo real das vagas.
+- Portal que permite adição de novas vagas para uma maior empregabilidade.
+- Navegação fácil entre telas do app.
+- Dicas e muito mais disponivel pelo app.
 
 ## Passos para instalação e execução
 
@@ -31,7 +20,7 @@ Aplicativo mobile para gerar relatórios e controlar o estoque usando visão com
 git clone https://github.com/felipeclarindo/skill-bridge-api-rest-dotnet.git
 ```
 
-2. Siga as intruções para executar no `Readme.md` da api.
+2. Siga as intruções para executar no `README.md` da api.
 
 3. Clone o repositório:
 
