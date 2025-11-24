@@ -1,19 +1,20 @@
-// stacks/HomeStack.js
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "../../screens/home/HomeScreen";
+import DashboardScreen from "../../screens/home/DashboardScreen";
 import Header from "../../components/Header";
 
 const Stack = createNativeStackNavigator();
 
-export default function HomeStack() {
+export default function DashboardStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        header: ({ route }) => <Header title={route.name} />,
+        header: ({ route, navigation, options }) => (
+          <Header title="Dashboard" />
+        ),
       }}
     >
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="DashboardScreen" component={DashboardScreen} />
     </Stack.Navigator>
   );
 }

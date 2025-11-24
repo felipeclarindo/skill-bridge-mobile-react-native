@@ -4,7 +4,7 @@ import Button from "../../components/Button";
 import { useAuth } from "../../contexts/AuthContext";
 
 export default function LoginScreen({ navigation }: any) {
-  const { login } = useAuth(); // agora chama a API real
+  const { login } = useAuth(); // chama nosso mockLogin do AuthContext
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,21 +16,21 @@ export default function LoginScreen({ navigation }: any) {
 
     try {
       setLoading(true);
-      const result = await login(email, password); // chama a API
+      const result = await login(email, password); // usa o mock
       setLoading(false);
 
       if (!result) {
         return Alert.alert("Erro", "Credenciais inválidas");
       }
 
-      // Login bem-sucedido → navega para Home
+      // Navegação para Home
       navigation.reset({
         index: 0,
         routes: [{ name: "Home" }],
       });
     } catch (err: any) {
       setLoading(false);
-      Alert.alert("Erro", err.message || "Falha ao realizar login");
+      Alert.alert("Erro", err || "Falha ao realizar login");
     }
   }
 

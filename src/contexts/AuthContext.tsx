@@ -6,7 +6,47 @@ import React, {
   ReactNode,
 } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { loginUser, registerUser } from "../api/user";
+
+// Mocked users
+const mockUsers = [
+  {
+    id: "1",
+    name: "Felipe Clarindo",
+    email: "felipe@teste.com",
+    password: "123456",
+  },
+];
+
+// Mock login
+async function mockLogin(email: string, password: string) {
+  const user = mockUsers.find(
+    (u) => u.email === email && u.password === password
+  );
+
+  return new Promise<{ id: string; name: string; email: string }>(
+    (resolve, reject) => {
+      setTimeout(() => {
+        if (!user) reject("Credenciais inválidas");
+        else resolve({ id: user.id, name: user.name, email: user.email });
+      }, 900);
+    }
+  );
+}
+
+// Mock signup
+async function mockSignup(name: string, email: string, password: string) {
+  return new Promise<{ id: string; name: string; email: string }>((resolve) => {
+    setTimeout(() => {
+      const newUser = {
+        id: String(Date.now()),
+        name,
+        email,
+      };
+      mockUsers.push({ ...newUser, password });
+      resolve(newUser);
+    }, 900);
+  });
+}
 
 type User = {
   id: string;
@@ -22,11 +62,10 @@ type AuthContextProps = {
   logout: () => Promise<void>;
 };
 
-// Context inicial undefined para checagem segura
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 type AuthProviderProps = {
-  children: ReactNode; // <- garante que React entende children
+  children: ReactNode;
 };
 
 export function AuthProvider({ children }: AuthProviderProps) {
@@ -44,7 +83,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   async function login(email: string, password: string) {
     try {
-      const loggedUser = await loginUser(email, password);
+      const loggedUser = await mockLogin(email, password);
       setUser(loggedUser);
       await AsyncStorage.setItem(
         "@skillbridge:user",
@@ -58,7 +97,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   async function signup(name: string, email: string, password: string) {
     try {
-      const newUser = await registerUser({ name, email, password });
+      const newUser = await mockSignup(name, email, password);
       setUser(newUser);
       await AsyncStorage.setItem("@skillbridge:user", JSON.stringify(newUser));
       return true;

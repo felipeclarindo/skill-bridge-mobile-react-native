@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { View, TextInput, StyleSheet, Alert } from "react-native";
+import { View, TextInput, StyleSheet, Alert, SafeAreaView } from "react-native";
 import Button from "../../components/Button";
 import { createJob } from "../../services/mockCrud";
+import Header from "../../components/Header";
 
 export default function JobCreateScreen({ navigation }: any) {
   const [title, setTitle] = useState("");
@@ -21,25 +22,29 @@ export default function JobCreateScreen({ navigation }: any) {
   }
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        placeholder="Título da vaga"
-        style={styles.input}
-        onChangeText={setTitle}
-      />
-      <TextInput
-        placeholder="Empresa"
-        style={styles.input}
-        onChangeText={setCompany}
-      />
-
-      <Button title="Salvar" onPress={handleCreate} loading={loading} />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.content}>
+        <TextInput
+          placeholder="Título da vaga"
+          style={styles.input}
+          onChangeText={setTitle}
+          value={title}
+        />
+        <TextInput
+          placeholder="Empresa"
+          style={styles.input}
+          onChangeText={setCompany}
+          value={company}
+        />
+        <Button title="Salvar" onPress={handleCreate} loading={loading} />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 20, marginTop: 60 },
+  container: { flex: 1, backgroundColor: "#F5F5F5" },
+  content: { padding: 20 },
   input: {
     backgroundColor: "#FFF",
     padding: 12,

@@ -4,7 +4,7 @@ import Button from "../../components/Button";
 import { useAuth } from "../../contexts/AuthContext";
 
 export default function SignupScreen({ navigation }: any) {
-  const { signup } = useAuth();
+  const { signup } = useAuth(); // chama nosso mockSignup do AuthContext
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +17,7 @@ export default function SignupScreen({ navigation }: any) {
 
     try {
       setLoading(true);
-      const ok = await signup(name, email, password);
+      const ok = await signup(name, email, password); // usa o mock
       setLoading(false);
 
       if (!ok) {
@@ -28,7 +28,7 @@ export default function SignupScreen({ navigation }: any) {
       navigation.goBack();
     } catch (err: any) {
       setLoading(false);
-      Alert.alert("Erro", err.message || "Falha ao registrar");
+      Alert.alert("Erro", err || "Falha ao registrar");
     }
   }
 

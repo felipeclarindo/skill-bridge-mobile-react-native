@@ -2,6 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import HomeStack from "../stacks/HomeStack";
+import DashboardStack from "../stacks/DashboardStack";
 import ProfileScreen from "../../screens/profile/ProfileScreen";
 
 const Tab = createBottomTabNavigator();
@@ -11,6 +12,8 @@ export default function AppTabs() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
+        tabBarActiveTintColor: "#4CAF50",
+        tabBarInactiveTintColor: "gray",
       }}
     >
       <Tab.Screen
